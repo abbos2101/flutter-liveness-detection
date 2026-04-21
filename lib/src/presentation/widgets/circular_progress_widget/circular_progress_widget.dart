@@ -49,18 +49,16 @@ class _CircularProgressWidgetState extends State<CircularProgressWidget>
       vsync: this,
       duration: widget.duration,
     );
-    _animation = Tween(begin: 0.0, end: widget.current).animate(
-      CurvedAnimation(
-        parent: _animationController!,
-        curve: widget.curve,
-      ),
-    )..addListener(() {
-        if (mounted) {
-          setState(() {
-            _current = _animation!.value;
-          });
-        }
-      });
+    _animation =
+        Tween(begin: 0.0, end: widget.current).animate(
+          CurvedAnimation(parent: _animationController!, curve: widget.curve),
+        )..addListener(() {
+          if (mounted) {
+            setState(() {
+              _current = _animation!.value;
+            });
+          }
+        });
 
     _animationController!.forward();
   }
@@ -76,15 +74,13 @@ class _CircularProgressWidgetState extends State<CircularProgressWidget>
     super.didUpdateWidget(oldWidget);
     if (oldWidget.current != widget.current) {
       if (_animationController != null) {
-        _animation = Tween(
-          begin: oldWidget.current,
-          end: widget.current,
-        ).animate(
-          CurvedAnimation(
-            parent: _animationController!,
-            curve: widget.curve,
-          ),
-        );
+        _animation = Tween(begin: oldWidget.current, end: widget.current)
+            .animate(
+              CurvedAnimation(
+                parent: _animationController!,
+                curve: widget.curve,
+              ),
+            );
         _animationController?.forward(from: 0.0);
       } else {
         _updateProgress();
@@ -121,11 +117,9 @@ class _CircularProgressWidgetState extends State<CircularProgressWidget>
               child: RotationTransition(
                 turns: const AlwaysStoppedAnimation(90 / 360),
                 child: Padding(
-                  padding: EdgeInsets.all(widget.heightLine),
+                  padding: .all(widget.heightLine),
                   child: Container(
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                    ),
+                    decoration: const BoxDecoration(shape: BoxShape.circle),
                     clipBehavior: Clip.antiAlias,
                     child: widget.child,
                   ),

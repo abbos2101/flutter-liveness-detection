@@ -43,12 +43,7 @@ class CircularProgressPainter extends CustomPainter {
   }
 
   /// Draw a series of arcs, each composing the full steps of the indicator
-  void _drawStepArc(
-    Canvas canvas,
-    Paint paint,
-    Rect rect,
-    Size size,
-  ) {
+  void _drawStepArc(Canvas canvas, Paint paint, Rect rect, Size size) {
     var centerX = rect.center.dx;
     var centerY = rect.center.dy;
     var radius = math.min(centerX, centerY);

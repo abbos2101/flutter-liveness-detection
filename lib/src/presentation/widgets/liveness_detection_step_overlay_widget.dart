@@ -112,9 +112,7 @@ class LivenessDetectionStepOverlayWidgetState
       maxStep: _indicatorMaxStep,
       child: Transform.scale(
         scale: scale,
-        child: Center(
-          child: widget.camera,
-        ),
+        child: Center(child: widget.camera),
       ),
     );
   }
@@ -186,9 +184,9 @@ class LivenessDetectionStepOverlayWidgetState
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      minimum: const EdgeInsets.all(16),
+      minimum: const .all(16),
       child: Container(
-        margin: const EdgeInsets.all(12),
+        margin: const .all(12),
         height: double.infinity,
         width: double.infinity,
         color: Colors.transparent,
@@ -198,14 +196,15 @@ class LivenessDetectionStepOverlayWidgetState
               onTap: () => Navigator.pop(context),
               child: widget.showCurrentStep
                   ? Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: .spaceBetween,
                       children: [
                         Text(
                           'Back',
                           style: TextStyle(
-                              color: widget.isDarkMode
-                                  ? Colors.white
-                                  : Colors.black),
+                            color: widget.isDarkMode
+                                ? Colors.white
+                                : Colors.black,
+                          ),
                         ),
                         Visibility(
                           replacement: const SizedBox.shrink(),
@@ -216,23 +215,26 @@ class LivenessDetectionStepOverlayWidgetState
                               color: widget.isDarkMode
                                   ? Colors.white
                                   : Colors.black,
-                              fontWeight: FontWeight.bold,
+                              fontWeight: .bold,
                             ),
                           ),
                         ),
                         Text(
                           stepCounter,
                           style: TextStyle(
-                              color: widget.isDarkMode
-                                  ? Colors.white
-                                  : Colors.black),
-                        )
+                            color: widget.isDarkMode
+                                ? Colors.white
+                                : Colors.black,
+                          ),
+                        ),
                       ],
                     )
-                  : Text('Back',
+                  : Text(
+                      'Back',
                       style: TextStyle(
-                          color:
-                              widget.isDarkMode ? Colors.white : Colors.black)),
+                        color: widget.isDarkMode ? Colors.white : Colors.black,
+                      ),
+                    ),
             ),
             _buildBody(),
           ],
@@ -243,9 +245,9 @@ class LivenessDetectionStepOverlayWidgetState
 
   Widget _buildBody() {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisSize: MainAxisSize.max,
+      mainAxisAlignment: .center,
+      crossAxisAlignment: .center,
+      mainAxisSize: .max,
       children: [
         _buildCircularCamera(),
         const SizedBox(height: 16),
@@ -267,7 +269,7 @@ class LivenessDetectionStepOverlayWidgetState
       height: 300,
       width: 300,
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(1000),
+        borderRadius: .circular(1000),
         child: _circularProgressWidget,
       ),
     );
@@ -281,7 +283,7 @@ class LivenessDetectionStepOverlayWidgetState
 
   Widget _buildFaceDetectionStatus() {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: .center,
       children: [
         SizedBox(
           child: widget.isDarkMode
@@ -294,21 +296,24 @@ class LivenessDetectionStepOverlayWidgetState
                 )
               : ColorFiltered(
                   colorFilter: ColorFilter.mode(
-                      widget.isFaceDetected ? Colors.green : Colors.black,
-                      BlendMode.modulate),
+                    widget.isFaceDetected ? Colors.green : Colors.black,
+                    BlendMode.modulate,
+                  ),
                   child: LottieBuilder.asset(
                     widget.isFaceDetected
                         ? 'packages/flutter_liveness_detection_randomized_plugin/src/core/assets/face-detected.json'
                         : 'packages/flutter_liveness_detection_randomized_plugin/src/core/assets/face-id-anim.json',
                     height: widget.isFaceDetected ? 32 : 22,
                     width: widget.isFaceDetected ? 32 : 22,
-                  )),
+                  ),
+                ),
         ),
         const SizedBox(width: 16),
         Text(
           widget.isFaceDetected ? 'User Face Found' : 'User Face Not Found...',
-          style:
-              TextStyle(color: widget.isDarkMode ? Colors.white : Colors.black),
+          style: TextStyle(
+            color: widget.isDarkMode ? Colors.white : Colors.black,
+          ),
         ),
       ],
     );
@@ -330,24 +335,21 @@ class LivenessDetectionStepOverlayWidgetState
   }
 
   Widget _buildStepItem(BuildContext context, int index) {
-    return Padding(
-      padding: const EdgeInsets.all(10),
-      child: Container(
-        decoration: BoxDecoration(
-          color: widget.isDarkMode ? Colors.black : Colors.white,
-          borderRadius: BorderRadius.circular(20),
-        ),
-        alignment: Alignment.center,
-        margin: const EdgeInsets.symmetric(horizontal: 30),
-        padding: const EdgeInsets.all(10),
-        child: Text(
-          widget.steps[index].title,
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            color: widget.isDarkMode ? Colors.white : Colors.black,
-            fontSize: 24,
-            fontWeight: FontWeight.w500,
-          ),
+    return Container(
+      padding: const .all(10),
+      alignment: Alignment.center,
+      margin: const .symmetric(horizontal: 40, vertical: 10),
+      decoration: BoxDecoration(
+        color: widget.isDarkMode ? Colors.black : Colors.white,
+        borderRadius: .circular(20),
+      ),
+      child: Text(
+        widget.steps[index].title,
+        textAlign: .center,
+        style: TextStyle(
+          color: widget.isDarkMode ? Colors.white : Colors.black,
+          fontSize: 24,
+          fontWeight: .w500,
         ),
       ),
     );

@@ -30,20 +30,17 @@ class _HomeViewState extends State<HomeView> {
       body: Center(
         child: ListView(
           shrinkWrap: true,
-          padding: const EdgeInsets.all(12),
+          padding: const .all(12),
           children: [
             if (imgPath != null) ...[
-              const Text(
-                'Result Liveness Detection',
-                textAlign: TextAlign.center,
-              ),
+              const Text('Result Liveness Detection', textAlign: .center),
               const SizedBox(height: 12),
               Align(
                 child: SizedBox(
                   height: 100,
                   width: 100,
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(20),
+                    borderRadius: .circular(20),
                     child: Image.file(File(imgPath!), fit: BoxFit.cover),
                   ),
                 ),
@@ -52,13 +49,13 @@ class _HomeViewState extends State<HomeView> {
             ],
             Text(
               'Liveness Scenario ${livenessScenario + 1}/$totalScenarios',
-              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-              textAlign: TextAlign.center,
+              style: const TextStyle(fontSize: 16, fontWeight: .bold),
+              textAlign: .center,
             ),
             const SizedBox(height: 8),
             Text(
               _getScenarioDescription(),
-              textAlign: TextAlign.center,
+              textAlign: .center,
               style: const TextStyle(fontSize: 12),
             ),
             const SizedBox(height: 16),

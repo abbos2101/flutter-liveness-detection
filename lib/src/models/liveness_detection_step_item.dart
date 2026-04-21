@@ -22,6 +22,7 @@ class LivenessDetectionStepItem {
       thresholdToCheck: thresholdToCheck ?? this.thresholdToCheck,
     );
   }
+
   Map<String, dynamic> toMap() {
     final result = <String, dynamic>{};
 
@@ -36,7 +37,7 @@ class LivenessDetectionStepItem {
 
   factory LivenessDetectionStepItem.fromMap(Map<String, dynamic> map) {
     return LivenessDetectionStepItem(
-      step: LivenessDetectionStep.values[map['step'] ?? 0],
+      step: .values[map['step'] ?? 0],
       title: map['title'] ?? '',
       thresholdToCheck: map['thresholdToCheck']?.toDouble(),
     );
@@ -64,8 +65,6 @@ class LivenessDetectionStepItem {
 
   @override
   int get hashCode {
-    return step.hashCode ^
-    title.hashCode ^
-    thresholdToCheck.hashCode;
+    return step.hashCode ^ title.hashCode ^ thresholdToCheck.hashCode;
   }
 }

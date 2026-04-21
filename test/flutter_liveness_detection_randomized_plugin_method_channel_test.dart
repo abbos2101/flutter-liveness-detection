@@ -5,20 +5,22 @@ import 'package:flutter_liveness_detection_randomized_plugin/flutter_liveness_de
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  MethodChannelFlutterLivenessDetectionRandomizedPlugin platform = MethodChannelFlutterLivenessDetectionRandomizedPlugin();
-  const MethodChannel channel = MethodChannel('flutter_liveness_detection_randomized_plugin');
+  MethodChannelFlutterLivenessDetectionRandomizedPlugin platform =
+      MethodChannelFlutterLivenessDetectionRandomizedPlugin();
+  const MethodChannel channel = MethodChannel(
+    'flutter_liveness_detection_randomized_plugin',
+  );
 
   setUp(() {
-    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger.setMockMethodCallHandler(
-      channel,
-      (MethodCall methodCall) async {
-        return '42';
-      },
-    );
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(channel, (MethodCall methodCall) async {
+          return '42';
+        });
   });
 
   tearDown(() {
-    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger.setMockMethodCallHandler(channel, null);
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(channel, null);
   });
 
   test('getPlatformVersion', () async {
