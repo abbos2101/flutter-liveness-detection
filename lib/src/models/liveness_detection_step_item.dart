@@ -1,4 +1,6 @@
-import 'package:flutter_liveness_detection_randomized_plugin/index.dart';
+import 'dart:convert';
+
+import 'package:flutter_liveness_detection/src/core/enums/liveness_detection_step.dart';
 
 class LivenessDetectionStepItem {
   final LivenessDetectionStep step;

@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter_liveness_detection_randomized_plugin/index.dart';
+import 'dart:convert';
 
 abstract class LivenessDetectionThreshold extends Equatable {
   const LivenessDetectionThreshold();

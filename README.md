@@ -148,7 +148,7 @@ You can customize challenge labels or skip certain challenges:
 ## Complete Example 💡
 
 ```dart
-import 'package:flutter_liveness_detection_randomized_plugin/index.dart';
+import 'package:flutter_liveness_detection/index.dart';
 
 class MyApp extends StatelessWidget {
   @override

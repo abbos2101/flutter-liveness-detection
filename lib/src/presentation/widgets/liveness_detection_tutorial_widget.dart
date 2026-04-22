@@ -1,4 +1,4 @@
-import 'package:flutter_liveness_detection_randomized_plugin/index.dart';
+import 'package:flutter/material.dart';
 
 class LivenessDetectionTutorialScreen extends StatefulWidget {
   final VoidCallback onStartTap;

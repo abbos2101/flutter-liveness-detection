@@ -1,4 +1,5 @@
-import 'package:flutter_liveness_detection_randomized_plugin/index.dart';
+import 'package:flutter/material.dart';
+import 'package:google_mlkit_face_detection/google_mlkit_face_detection.dart';
 
 class MachineLearningKitHelper {
   MachineLearningKitHelper._privateConstructor();
