@@ -24,10 +24,9 @@ class LivenessDetectionStepItem {
   }
 
   Map<String, dynamic> toMap() {
-    final result = <String, dynamic>{};
-
-    result.addAll({'step': step.index});
-    result.addAll({'title': title});
+    final result = <String, dynamic>{}
+      ..addAll({'step': step.index})
+      ..addAll({'title': title});
     if (thresholdToCheck != null) {
       result.addAll({'thresholdToCheck': thresholdToCheck});
     }

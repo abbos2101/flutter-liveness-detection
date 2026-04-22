@@ -38,7 +38,7 @@ class _LivenessDetectionScreenState extends State<LivenessDetectionView> {
         brightness,
       );
     } catch (e) {
-      throw 'Failed to set application brightness';
+      throw Exception('Failed to set application brightness');
     }
   }
 
@@ -46,7 +46,7 @@ class _LivenessDetectionScreenState extends State<LivenessDetectionView> {
     try {
       await ScreenBrightness.instance.resetApplicationScreenBrightness();
     } catch (e) {
-      throw 'Failed to reset application brightness';
+      throw Exception('Failed to reset application brightness');
     }
   }
 
@@ -63,8 +63,9 @@ class _LivenessDetectionScreenState extends State<LivenessDetectionView> {
 
       if (smileIndex != -1) {
         final LivenessDetectionStepItem smileItem = list.removeAt(smileIndex);
-        list.shuffle(Random());
-        list.add(smileItem);
+        list
+          ..shuffle(Random())
+          ..add(smileItem);
       } else {
         list.shuffle(Random());
       }

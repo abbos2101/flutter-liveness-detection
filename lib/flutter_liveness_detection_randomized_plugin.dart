@@ -53,9 +53,4 @@ class FlutterLivenessDetectionRandomizedPlugin {
 
     return capturedFacePath;
   }
-
-  Future<String?> getPlatformVersion() {
-    return FlutterLivenessDetectionRandomizedPluginPlatform.instance
-        .getPlatformVersion();
-  }
 }

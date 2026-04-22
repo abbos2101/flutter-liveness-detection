@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:flutter_liveness_detection_randomized_plugin/index.dart';
 
 abstract class LivenessDetectionThreshold extends Equatable {
@@ -24,9 +25,7 @@ class LivenessThresholdSmile extends LivenessDetectionThreshold {
 
   @override
   Map<String, dynamic> toMap() {
-    final result = <String, dynamic>{};
-
-    result.addAll({'probability': probability});
+    final result = <String, dynamic>{}..addAll({'probability': probability});
 
     return result;
   }
@@ -94,10 +93,9 @@ class LivenessThresholdBlink extends LivenessDetectionThreshold {
 
   @override
   Map<String, dynamic> toMap() {
-    final result = <String, dynamic>{};
-
-    result.addAll({'leftEyeProbability': leftEyeProbability});
-    result.addAll({'rightEyeProbability': rightEyeProbability});
+    final result = <String, dynamic>{}
+      ..addAll({'leftEyeProbability': leftEyeProbability})
+      ..addAll({'rightEyeProbability': rightEyeProbability});
 
     return result;
   }
@@ -158,9 +156,8 @@ class LivenessThresholdHead extends LivenessDetectionThreshold {
 
   @override
   Map<String, dynamic> toMap() {
-    final result = <String, dynamic>{};
-
-    result.addAll({'rotationAngle': rotationAngle});
+    final result = <String, dynamic>{}
+      ..addAll({'rotationAngle': rotationAngle});
 
     return result;
   }
