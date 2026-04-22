@@ -25,20 +25,20 @@ class LivenessDetectionLabelModel {
 
   factory LivenessDetectionLabelModel.fromJson(Map<String, dynamic> json) =>
       LivenessDetectionLabelModel(
-        smile: json["smile"],
-        lookUp: json["lookUp"],
-        lookDown: json["lookDown"],
-        lookLeft: json["lookLeft"],
-        lookRight: json["lookRight"],
-        blink: json["blink"],
+        smile: json['smile'],
+        lookUp: json['lookUp'],
+        lookDown: json['lookDown'],
+        lookLeft: json['lookLeft'],
+        lookRight: json['lookRight'],
+        blink: json['blink'],
       );
 
   Map<String, dynamic> toJson() => {
-    "smile": smile,
-    "lookUp": lookUp,
-    "lookDown": lookDown,
-    "lookLeft": lookLeft,
-    "lookRight": lookRight,
-    "blink": blink,
+    'smile': smile,
+    'lookUp': lookUp,
+    'lookDown': lookDown,
+    'lookLeft': lookLeft,
+    'lookRight': lookRight,
+    'blink': blink,
   };
 }

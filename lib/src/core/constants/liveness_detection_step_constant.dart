@@ -1,25 +1,10 @@
 import 'package:flutter_liveness_detection_randomized_plugin/index.dart';
 
-List<LivenessDetectionStepItem> stepLiveness = [
-  LivenessDetectionStepItem(
-    step: .blink,
-    title: "Blink 2-3 Times",
-  ),
-  LivenessDetectionStepItem(
-    step: .lookUp,
-    title: "Look UP",
-  ),
-  LivenessDetectionStepItem(
-    step: .lookDown,
-    title: "Look DOWN",
-  ),
-  LivenessDetectionStepItem(
-    step: .lookRight,
-    title: "Look RIGHT",
-  ),
-  LivenessDetectionStepItem(
-    step: .lookLeft,
-    title: "Look LEFT",
-  ),
-  LivenessDetectionStepItem(step: .smile, title: "Smile"),
+var stepLiveness = <LivenessDetectionStepItem>[
+  LivenessDetectionStepItem(step: .blink, title: 'Blink 2-3 Times'),
+  LivenessDetectionStepItem(step: .lookUp, title: 'Look UP'),
+  LivenessDetectionStepItem(step: .lookDown, title: 'Look DOWN'),
+  LivenessDetectionStepItem(step: .lookRight, title: 'Look RIGHT'),
+  LivenessDetectionStepItem(step: .lookLeft, title: 'Look LEFT'),
+  LivenessDetectionStepItem(step: .smile, title: 'Smile'),
 ];

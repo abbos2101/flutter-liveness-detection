@@ -14,7 +14,7 @@ class LivenessThresholdSmile extends LivenessDetectionThreshold {
   LivenessThresholdSmile({this.probability = 0.75}) : super() {
     assert(
       probability < 1.0 || probability > 0.0,
-      "Smile Probability has to be between 1.0 and 0.0",
+      'Smile Probability has to be between 1.0 and 0.0',
     );
   }
 
@@ -74,11 +74,11 @@ class LivenessThresholdBlink extends LivenessDetectionThreshold {
   }) : super() {
     assert(
       leftEyeProbability < 1.0 || leftEyeProbability > 0.0,
-      "Left Probability has to be between 1.0 and 0.0",
+      'Left Probability has to be between 1.0 and 0.0',
     );
     assert(
       rightEyeProbability < 1.0 || rightEyeProbability > 0.0,
-      "Right Probability has to be between 1.0 and 0.0",
+      'Right Probability has to be between 1.0 and 0.0',
     );
   }
 
@@ -146,7 +146,7 @@ class LivenessThresholdHead extends LivenessDetectionThreshold {
   LivenessThresholdHead({this.rotationAngle = 45.0}) : super() {
     assert(
       rotationAngle > 180.0 || rotationAngle > 0.0,
-      "To detect the livelyness of the face, it has to be properly visible in the camera. The threshold angle should be more than 0.0 degrees and less than 180 degrees.",
+      'To detect the livelyness of the face, it has to be properly visible in the camera. The threshold angle should be more than 0.0 degrees and less than 180 degrees.',
     );
   }
 

@@ -36,15 +36,15 @@ class LivenessDetectionStepOverlayWidgetState
     extends State<LivenessDetectionStepOverlayWidget> {
   int get currentIndex => _currentIndex;
 
-  bool _isLoading = false;
-  int _currentIndex = 0;
+  var _isLoading = false;
+  var _currentIndex = 0;
   double _currentStepIndicator = 0;
   late final PageController _pageController;
   late CircularProgressWidget _circularProgressWidget;
 
-  bool _pageViewVisible = false;
+  var _pageViewVisible = false;
   Timer? _countdownTimer;
-  int _remainingDuration = 0;
+  var _remainingDuration = 0;
 
   static const double _indicatorMaxStep = 100;
   static const double _heightLine = 25;
@@ -53,7 +53,7 @@ class LivenessDetectionStepOverlayWidgetState
     return 100 / stepLength;
   }
 
-  String get stepCounter => "$_currentIndex/${widget.steps.length}";
+  String get stepCounter => '$_currentIndex/${widget.steps.length}';
 
   @override
   void initState() {
@@ -93,7 +93,7 @@ class LivenessDetectionStepOverlayWidgetState
   }
 
   CircularProgressWidget _buildCircularIndicator() {
-    double scale = 1.0;
+    var scale = 1.0;
     if (widget.cameraController != null &&
         widget.cameraController!.value.isInitialized) {
       final cameraAspectRatio = widget.cameraController!.value.aspectRatio;
@@ -276,8 +276,8 @@ class LivenessDetectionStepOverlayWidgetState
   }
 
   String _getRemainingTimeText(int duration) {
-    int minutes = duration ~/ 60;
-    int seconds = duration % 60;
+    final int minutes = duration ~/ 60;
+    final int seconds = duration % 60;
     return "${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}";
   }
 

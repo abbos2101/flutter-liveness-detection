@@ -2,7 +2,7 @@ import 'package:flutter_liveness_detection_randomized_plugin/index.dart';
 
 class FlutterLivenessDetectionRandomizedPlugin {
   FlutterLivenessDetectionRandomizedPlugin._privateConstructor();
-  static final FlutterLivenessDetectionRandomizedPlugin instance =
+  static final instance =
       FlutterLivenessDetectionRandomizedPlugin._privateConstructor();
   final List<LivenessDetectionThreshold> _thresholds = [];
 

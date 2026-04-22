@@ -73,13 +73,13 @@ class _LivenessDetectionTutorialScreenState
                       ),
                     ),
                     subtitle: Text(
-                      "Make sure you are in an area that has sufficient lighting and that your ears are not covered by anything",
+                      'Make sure you are in an area that has sufficient lighting and that your ears are not covered by anything',
                       style: TextStyle(
                         color: widget.isDarkMode ? Colors.white : Colors.black,
                       ),
                     ),
                     title: Text(
-                      "Sufficient Lighting",
+                      'Sufficient Lighting',
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: .bold,
@@ -97,13 +97,13 @@ class _LivenessDetectionTutorialScreenState
                       ),
                     ),
                     subtitle: Text(
-                      "Hold the phone at eye level and look straight at the camera",
+                      'Hold the phone at eye level and look straight at the camera',
                       style: TextStyle(
                         color: widget.isDarkMode ? Colors.white : Colors.black,
                       ),
                     ),
                     title: Text(
-                      "Straight Ahead View",
+                      'Straight Ahead View',
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: .bold,
@@ -121,13 +121,13 @@ class _LivenessDetectionTutorialScreenState
                       ),
                     ),
                     subtitle: Text(
-                      "The time limit given for the liveness detection system verification process is ${widget.duration ?? 45} seconds",
+                      'The time limit given for the liveness detection system verification process is ${widget.duration ?? 45} seconds',
                       style: TextStyle(
                         color: widget.isDarkMode ? Colors.white : Colors.black,
                       ),
                     ),
                     title: Text(
-                      "Time Limit Verification",
+                      'Time Limit Verification',
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: .bold,
@@ -151,7 +151,7 @@ class _LivenessDetectionTutorialScreenState
               ),
               icon: const Icon(Icons.camera_alt_outlined),
               onPressed: () => widget.onStartTap(),
-              label: const Text("Start the Liveness Detection System"),
+              label: const Text('Start the Liveness Detection System'),
             ),
             const SizedBox(height: 10),
             const Spacer(),

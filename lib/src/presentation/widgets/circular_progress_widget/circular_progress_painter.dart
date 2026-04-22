@@ -28,7 +28,7 @@ class CircularProgressPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     final w = size.width;
     final h = size.height;
-    Paint paint = Paint()..style = PaintingStyle.stroke;
+    final paint = Paint()..style = PaintingStyle.stroke;
 
     final rect = Rect.fromCenter(
       center: Offset(w / 2, h / 2),
@@ -44,23 +44,23 @@ class CircularProgressPainter extends CustomPainter {
 
   /// Draw a series of arcs, each composing the full steps of the indicator
   void _drawStepArc(Canvas canvas, Paint paint, Rect rect, Size size) {
-    var centerX = rect.center.dx;
-    var centerY = rect.center.dy;
-    var radius = math.min(centerX, centerY);
+    final centerX = rect.center.dx;
+    final centerY = rect.center.dy;
+    final radius = math.min(centerX, centerY);
 
-    var draw = (360 * currentStep) / maxStep;
-    var stepLine = 360 / maxStep;
+    final draw = (360 * currentStep) / maxStep;
+    final stepLine = 360 / maxStep;
 
     for (double i = 0; i < 360; i += stepLine) {
-      var outerCircleRadius = (radius - (i < draw ? 0 : heightLine / 2));
-      var innerCircleRadius = (radius - heightLine);
+      final outerCircleRadius = radius - (i < draw ? 0 : heightLine / 2);
+      final innerCircleRadius = radius - heightLine;
 
-      var x1 = centerX + outerCircleRadius * math.cos(i * math.pi / 180);
-      var y1 = centerX + outerCircleRadius * math.sin(i * math.pi / 180);
+      final x1 = centerX + outerCircleRadius * math.cos(i * math.pi / 180);
+      final y1 = centerX + outerCircleRadius * math.sin(i * math.pi / 180);
       //
-      var x2 = centerX + innerCircleRadius * math.cos(i * math.pi / 180);
-      var y2 = centerX + innerCircleRadius * math.sin(i * math.pi / 180);
-      var dashBrush = paint
+      final x2 = centerX + innerCircleRadius * math.cos(i * math.pi / 180);
+      final y2 = centerX + innerCircleRadius * math.sin(i * math.pi / 180);
+      final dashBrush = paint
         ..color = i < draw
             ? selectedColor ?? Colors.red
             : unselectedColor ?? Colors.yellow

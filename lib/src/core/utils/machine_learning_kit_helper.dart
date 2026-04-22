@@ -2,10 +2,9 @@ import 'package:flutter_liveness_detection_randomized_plugin/index.dart';
 
 class MachineLearningKitHelper {
   MachineLearningKitHelper._privateConstructor();
-  static final MachineLearningKitHelper instance =
-      MachineLearningKitHelper._privateConstructor();
+  static final instance = MachineLearningKitHelper._privateConstructor();
 
-  final FaceDetector faceDetector = FaceDetector(
+  final faceDetector = FaceDetector(
     options: FaceDetectorOptions(
       enableContours: true,
       enableClassification: true,

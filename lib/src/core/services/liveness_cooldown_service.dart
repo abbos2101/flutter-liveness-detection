@@ -4,9 +4,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_liveness_detection_randomized_plugin/src/models/liveness_detection_cooldown.dart';
 
 class LivenessCooldownService {
-  static const String _cooldownKey = 'liveness_detection_cooldown';
-  int _maxFailedAttempts = 3;
-  int _cooldownMinutes = 10;
+  static const _cooldownKey = 'liveness_detection_cooldown';
+  var _maxFailedAttempts = 3;
+  var _cooldownMinutes = 10;
 
   static LivenessCooldownService? _instance;
   static LivenessCooldownService get instance {
@@ -25,7 +25,7 @@ class LivenessCooldownService {
   }
 
   Timer? _cooldownTimer;
-  final StreamController<LivenessDetectionCooldown> _cooldownController =
+  final _cooldownController =
       StreamController<LivenessDetectionCooldown>.broadcast();
 
   Stream<LivenessDetectionCooldown> get cooldownStream =>

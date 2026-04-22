@@ -20,15 +20,15 @@ class LivenessDetectionView extends StatefulWidget {
 class _LivenessDetectionScreenState extends State<LivenessDetectionView> {
   // Camera related variables
   CameraController? _cameraController;
-  int _cameraIndex = 0;
-  bool _isBusy = false;
-  bool _isTakingPicture = false;
+  var _cameraIndex = 0;
+  var _isBusy = false;
+  var _isTakingPicture = false;
   Timer? _timerToDetectFace;
 
   // Detection state variables
   late bool _isInfoStepCompleted;
-  bool _isProcessingStep = false;
-  bool _faceDetectedState = false;
+  var _isProcessingStep = false;
+  var _faceDetectedState = false;
   List<LivenessDetectionStepItem> _shuffledSteps = [];
 
   // Brightness Screen
@@ -52,20 +52,17 @@ class _LivenessDetectionScreenState extends State<LivenessDetectionView> {
 
   // Steps related variables
   late final List<LivenessDetectionStepItem> steps;
-  final GlobalKey<LivenessDetectionStepOverlayWidgetState> _stepsKey =
-      GlobalKey<LivenessDetectionStepOverlayWidgetState>();
+  final _stepsKey = GlobalKey<LivenessDetectionStepOverlayWidgetState>();
 
   static void shuffleListLivenessChallenge({
     required List<LivenessDetectionStepItem> list,
     required bool isSmileLast,
   }) {
     if (isSmileLast) {
-      int? smileIndex = list.indexWhere(
-        (item) => item.step == .smile,
-      );
+      final int smileIndex = list.indexWhere((item) => item.step == .smile);
 
       if (smileIndex != -1) {
-        LivenessDetectionStepItem smileItem = list.removeAt(smileIndex);
+        final LivenessDetectionStepItem smileItem = list.removeAt(smileIndex);
         list.shuffle(Random());
         list.add(smileItem);
       } else {
@@ -92,7 +89,7 @@ class _LivenessDetectionScreenState extends State<LivenessDetectionView> {
       }
 
       final tempDir = await getTemporaryDirectory();
-      final String targetPath =
+      final targetPath =
           '${tempDir.path}/${DateTime.now().millisecondsSinceEpoch}.jpg';
 
       final compressedBytes = img.encodeJpg(originalImage, quality: quality);
@@ -103,18 +100,18 @@ class _LivenessDetectionScreenState extends State<LivenessDetectionView> {
 
       return XFile(compressedFile.path);
     } catch (e) {
-      debugPrint("Error compressing image: $e");
+      debugPrint('Error compressing image: $e');
       return originalFile;
     }
   }
 
   List<T> manualRandomItemLiveness<T>(List<T> list) {
     final random = Random();
-    List<T> shuffledList = List.from(list);
+    final List<T> shuffledList = List.from(list);
     for (int i = shuffledList.length - 1; i > 0; i--) {
-      int j = random.nextInt(i + 1);
+      final int j = random.nextInt(i + 1);
 
-      T temp = shuffledList[i];
+      final T temp = shuffledList[i];
       shuffledList[i] = shuffledList[j];
       shuffledList[j] = temp;
     }
@@ -124,65 +121,62 @@ class _LivenessDetectionScreenState extends State<LivenessDetectionView> {
   List<LivenessDetectionStepItem> customizedLivenessLabel(
     LivenessDetectionLabelModel label,
   ) {
-    List<LivenessDetectionStepItem> customizedSteps = [];
+    final List<LivenessDetectionStepItem> customizedSteps = [];
 
     // Add blink step if not explicitly skipped (empty string skips)
-    if (label.blink != "") {
+    if (label.blink != '') {
       customizedSteps.add(
         LivenessDetectionStepItem(
           step: .blink,
-          title: label.blink ?? "Blink 2-3 Times",
+          title: label.blink ?? 'Blink 2-3 Times',
         ),
       );
     }
 
     // Add lookRight step if not explicitly skipped
-    if (label.lookRight != "") {
+    if (label.lookRight != '') {
       customizedSteps.add(
         LivenessDetectionStepItem(
           step: .lookRight,
-          title: label.lookRight ?? "Look RIGHT",
+          title: label.lookRight ?? 'Look RIGHT',
         ),
       );
     }
 
     // Add lookLeft step if not explicitly skipped
-    if (label.lookLeft != "") {
+    if (label.lookLeft != '') {
       customizedSteps.add(
         LivenessDetectionStepItem(
           step: .lookLeft,
-          title: label.lookLeft ?? "Look LEFT",
+          title: label.lookLeft ?? 'Look LEFT',
         ),
       );
     }
 
     // Add lookUp step if not explicitly skipped
-    if (label.lookUp != "") {
+    if (label.lookUp != '') {
       customizedSteps.add(
         LivenessDetectionStepItem(
           step: .lookUp,
-          title: label.lookUp ?? "Look UP",
+          title: label.lookUp ?? 'Look UP',
         ),
       );
     }
 
     // Add lookDown step if not explicitly skipped
-    if (label.lookDown != "") {
+    if (label.lookDown != '') {
       customizedSteps.add(
         LivenessDetectionStepItem(
           step: .lookDown,
-          title: label.lookDown ?? "Look DOWN",
+          title: label.lookDown ?? 'Look DOWN',
         ),
       );
     }
 
     // Add smile step if not explicitly skipped
-    if (label.smile != "") {
+    if (label.smile != '') {
       customizedSteps.add(
-        LivenessDetectionStepItem(
-          step: .smile,
-          title: label.smile ?? "Smile",
-        ),
+        LivenessDetectionStepItem(step: .smile, title: label.smile ?? 'Smile'),
       );
     }
 
@@ -226,7 +220,7 @@ class _LivenessDetectionScreenState extends State<LivenessDetectionView> {
     }
   }
 
-  void _postFrameCallBack() async {
+  Future<void> _postFrameCallBack() async {
     availableCams = await availableCameras();
     if (availableCams.any(
       (element) =>
@@ -254,7 +248,7 @@ class _LivenessDetectionScreenState extends State<LivenessDetectionView> {
     // Steps are shuffled fresh in _preInitCallBack
   }
 
-  void _startLiveFeed() async {
+  Future<void> _startLiveFeed() async {
     final camera = availableCams[_cameraIndex];
     _cameraController = CameraController(
       camera,
@@ -342,7 +336,7 @@ class _LivenessDetectionScreenState extends State<LivenessDetectionView> {
       } else {
         if (mounted) setState(() => _faceDetectedState = true);
         final currentIndex = _stepsKey.currentState?.currentIndex ?? 0;
-        List<LivenessDetectionStepItem> currentSteps = _getStepsToUse();
+        final List<LivenessDetectionStepItem> currentSteps = _getStepsToUse();
         if (currentIndex < currentSteps.length) {
           _detectFace(face: faces.first, step: currentSteps[currentIndex].step);
         }
@@ -355,7 +349,7 @@ class _LivenessDetectionScreenState extends State<LivenessDetectionView> {
     if (mounted) setState(() {});
   }
 
-  void _detectFace({
+  Future<void> _detectFace({
     required Face face,
     required LivenessDetectionStep step,
   }) async {
@@ -396,7 +390,7 @@ class _LivenessDetectionScreenState extends State<LivenessDetectionView> {
     _stopProcessing();
   }
 
-  void _takePicture() async {
+  Future<void> _takePicture() async {
     try {
       if (_cameraController == null || _isTakingPicture) return;
 
@@ -421,11 +415,11 @@ class _LivenessDetectionScreenState extends State<LivenessDetectionView> {
     }
   }
 
-  void _onDetectionCompleted({XFile? imgToReturn}) async {
+  Future<void> _onDetectionCompleted({XFile? imgToReturn}) async {
     final String? imgPath = imgToReturn?.path;
 
     if (imgPath != null) {
-      final File imageFile = File(imgPath);
+      final imageFile = File(imgPath);
       final int fileSizeInBytes = await imageFile.length();
       final double sizeInKb = fileSizeInBytes / 1024;
       debugPrint('Image result size : ${sizeInKb.toStringAsFixed(2)} KB');
@@ -446,7 +440,7 @@ class _LivenessDetectionScreenState extends State<LivenessDetectionView> {
   }
 
   void _resetSteps() {
-    List<LivenessDetectionStepItem> currentSteps = _getStepsToUse();
+    final List<LivenessDetectionStepItem> currentSteps = _getStepsToUse();
 
     for (var step in currentSteps) {
       final index = currentSteps.indexWhere((p1) => p1.step == step.step);

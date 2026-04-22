@@ -25,7 +25,7 @@ class _LivenessCooldownWidgetState extends State<LivenessCooldownWidget>
     with WidgetsBindingObserver {
   Timer? _countdownTimer;
   Duration _remainingTime = Duration.zero;
-  static const String _remainingTimeKey = 'cooldown_remaining_time';
+  static const _remainingTimeKey = 'cooldown_remaining_time';
 
   @override
   void initState() {

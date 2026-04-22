@@ -40,7 +40,7 @@ class _CircularProgressWidgetState extends State<CircularProgressWidget>
     with SingleTickerProviderStateMixin, AutomaticKeepAliveClientMixin {
   AnimationController? _animationController;
   Animation? _animation;
-  double _current = 0.0;
+  var _current = 0.0;
 
   @override
   void initState() {
@@ -88,7 +88,7 @@ class _CircularProgressWidgetState extends State<CircularProgressWidget>
     }
   }
 
-  _updateProgress() {
+  void _updateProgress() {
     if (mounted) {
       setState(() => _current = widget.current);
     }
