@@ -196,49 +196,31 @@ class LivenessDetectionStepOverlayWidgetState
         color: Colors.transparent,
         child: Stack(
           children: [
-            GestureDetector(
-              onTap: () => Navigator.pop(context),
-              child: widget.showCurrentStep
-                  ? Row(
-                      mainAxisAlignment: .spaceBetween,
-                      children: [
-                        Text(
-                          'Back',
-                          style: TextStyle(
-                            color: widget.isDarkMode
-                                ? Colors.white
-                                : Colors.black,
-                          ),
-                        ),
-                        Visibility(
-                          replacement: const SizedBox.shrink(),
-                          visible: widget.showDurationUiText,
-                          child: Text(
-                            _getRemainingTimeText(_remainingDuration),
-                            style: TextStyle(
-                              color: widget.isDarkMode
-                                  ? Colors.white
-                                  : Colors.black,
-                              fontWeight: .bold,
-                            ),
-                          ),
-                        ),
-                        Text(
-                          stepCounter,
-                          style: TextStyle(
-                            color: widget.isDarkMode
-                                ? Colors.white
-                                : Colors.black,
-                          ),
-                        ),
-                      ],
-                    )
-                  : Text(
-                      'Back',
+            Row(
+              children: [
+                CupertinoButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: const Icon(CupertinoIcons.back),
+                ),
+                if (widget.showCurrentStep) ...{
+                  Expanded(
+                    child: Text(
+                      _getRemainingTimeText(_remainingDuration),
+                      textAlign: .center,
                       style: TextStyle(
                         color: widget.isDarkMode ? Colors.white : Colors.black,
+                        fontWeight: .bold,
                       ),
                     ),
+                  ),
+                  Text(
+                    stepCounter,
+                    style: TextStyle(
+                      color: widget.isDarkMode ? Colors.white : Colors.black,
+                    ),
+                  ),
+                },
+              ],
             ),
             _buildBody(),
           ],

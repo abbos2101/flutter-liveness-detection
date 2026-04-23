@@ -9,9 +9,6 @@ class LivenessDetectionConfig {
   final bool isEnableMaxBrightness;
   final int imageQuality;
   final ResolutionPreset cameraResolution;
-  final bool enableCooldownOnFailure;
-  final int maxFailedAttempts;
-  final int cooldownMinutes;
   final bool isEnableSnackBar;
   final bool shuffleListWithSmileLast;
   final bool showCurrentStep;
@@ -25,9 +22,6 @@ class LivenessDetectionConfig {
     required this.isEnableMaxBrightness,
     required this.imageQuality,
     required this.cameraResolution,
-    required this.enableCooldownOnFailure,
-    required this.maxFailedAttempts,
-    required this.cooldownMinutes,
     required this.isEnableSnackBar,
     required this.shuffleListWithSmileLast,
     required this.showCurrentStep,
@@ -43,9 +37,6 @@ class LivenessDetectionConfig {
     bool isEnableMaxBrightness = true,
     int imageQuality = 100,
     ResolutionPreset cameraResolution = ResolutionPreset.high,
-    bool enableCooldownOnFailure = true,
-    int maxFailedAttempts = 3,
-    int cooldownMinutes = 10,
     bool isEnableSnackBar = true,
     bool shuffleListWithSmileLast = true,
     bool showCurrentStep = false,
@@ -72,9 +63,6 @@ class LivenessDetectionConfig {
       isEnableMaxBrightness: isEnableMaxBrightness,
       imageQuality: imageQuality,
       cameraResolution: cameraResolution,
-      enableCooldownOnFailure: enableCooldownOnFailure,
-      maxFailedAttempts: maxFailedAttempts,
-      cooldownMinutes: cooldownMinutes,
       isEnableSnackBar: isEnableSnackBar,
       shuffleListWithSmileLast: shuffleListWithSmileLast,
       showCurrentStep: showCurrentStep,

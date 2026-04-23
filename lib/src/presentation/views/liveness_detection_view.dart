@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_liveness_detection_randomized_plugin/flutter_liveness_detection_randomized_plugin.dart';
 import 'package:flutter_liveness_detection_randomized_plugin/src/core/constants/liveness_detection_step_constant.dart';
 import 'package:flutter_liveness_detection_randomized_plugin/src/core/enums/liveness_detection_step.dart';
-import 'package:flutter_liveness_detection_randomized_plugin/src/core/services/liveness_cooldown_service.dart';
 import 'package:flutter_liveness_detection_randomized_plugin/src/core/utils/machine_learning_kit_helper.dart';
 import 'package:flutter_liveness_detection_randomized_plugin/src/models/liveness_detection_step_item.dart';
 import 'package:flutter_liveness_detection_randomized_plugin/src/models/liveness_detection_threshold.dart';
@@ -199,13 +198,6 @@ class _LivenessDetectionScreenState extends State<LivenessDetectionView> {
   void initState() {
     _preInitCallBack();
     super.initState();
-    if (widget.config.enableCooldownOnFailure) {
-      LivenessCooldownService.instance.configure(
-        maxFailedAttempts: widget.config.maxFailedAttempts,
-        cooldownMinutes: widget.config.cooldownMinutes,
-      );
-      LivenessCooldownService.instance.initializeCooldownTimer();
-    }
     WidgetsBinding.instance.addPostFrameCallback((_) => _postFrameCallBack());
   }
 

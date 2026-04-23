@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'src/core/services/liveness_cooldown_service.dart';
 import 'src/models/liveness_detection_config.dart';
 import 'src/models/liveness_detection_threshold.dart';
 import 'src/presentation/views/liveness_detection_view.dart';
-import 'src/presentation/widgets/liveness_cooldown_widget.dart';
 
 export 'package:camera/camera.dart';
 
@@ -36,27 +34,6 @@ class FlutterLivenessDetection {
     required BuildContext context,
     required LivenessDetectionConfig config,
   }) async {
-    if (config.enableCooldownOnFailure) {
-      LivenessCooldownService.instance.configure(
-        maxFailedAttempts: config.maxFailedAttempts,
-        cooldownMinutes: config.cooldownMinutes,
-      );
-      final cooldownState = await LivenessCooldownService.instance
-          .getCooldownState();
-      if (cooldownState.isInCooldown && context.mounted) {
-        await Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) => LivenessCooldownWidget(
-              cooldownState: cooldownState,
-              isDarkMode: config.isDarkMode,
-              maxFailedAttempts: config.maxFailedAttempts,
-            ),
-          ),
-        );
-        return null;
-      }
-    }
-
     if (!context.mounted) return null;
 
     final String? capturedFacePath = await Navigator.of(context).push(
@@ -64,14 +41,6 @@ class FlutterLivenessDetection {
         builder: (context) => LivenessDetectionView(config: config),
       ),
     );
-
-    if (config.enableCooldownOnFailure) {
-      if (capturedFacePath != null) {
-        await LivenessCooldownService.instance.recordSuccessfulAttempt();
-      } else {
-        await LivenessCooldownService.instance.recordFailedAttempt();
-      }
-    }
 
     return capturedFacePath;
   }
