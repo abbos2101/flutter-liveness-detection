@@ -18,24 +18,71 @@ class LivenessDetectionConfig {
   final bool showCurrentStep;
   final bool isDarkMode;
 
-  LivenessDetectionConfig({
-    this.startWithInfoScreen = false,
-    this.durationLivenessVerify = 45,
-    this.showDurationUiText = false,
-    this.useCustomizedLabel = false,
-    this.customizedLabel,
-    this.isEnableMaxBrightness = true,
-    this.imageQuality = 100,
-    this.cameraResolution = ResolutionPreset.high,
-    this.enableCooldownOnFailure = true,
-    this.maxFailedAttempts = 3,
-    this.cooldownMinutes = 10,
-    this.isEnableSnackBar = true,
-    this.shuffleListWithSmileLast = true,
-    this.showCurrentStep = false,
-    this.isDarkMode = true,
-  }) : assert(
-         !useCustomizedLabel || customizedLabel != null,
-         'customizedLabel must not be null when useCustomizedLabel is true',
-       );
+  LivenessDetectionConfig._({
+    required this.startWithInfoScreen,
+    required this.durationLivenessVerify,
+    required this.showDurationUiText,
+    required this.useCustomizedLabel,
+    required this.customizedLabel,
+    required this.isEnableMaxBrightness,
+    required this.imageQuality,
+    required this.cameraResolution,
+    required this.enableCooldownOnFailure,
+    required this.maxFailedAttempts,
+    required this.cooldownMinutes,
+    required this.isEnableSnackBar,
+    required this.shuffleListWithSmileLast,
+    required this.showCurrentStep,
+    required this.isDarkMode,
+  });
+
+  factory LivenessDetectionConfig({
+    bool startWithInfoScreen = false,
+    int? durationLivenessVerify = 45,
+    bool showDurationUiText = false,
+    bool useCustomizedLabel = false,
+    LivenessDetectionLabelModel customizedLabel =
+        const LivenessDetectionLabelModel(),
+    bool isEnableMaxBrightness = true,
+    int imageQuality = 100,
+    ResolutionPreset cameraResolution = ResolutionPreset.high,
+    bool enableCooldownOnFailure = true,
+    int maxFailedAttempts = 3,
+    int cooldownMinutes = 10,
+    bool isEnableSnackBar = true,
+    bool shuffleListWithSmileLast = true,
+    bool showCurrentStep = false,
+    bool isDarkMode = true,
+    int? stepCount,
+  }) {
+    if (stepCount != null) {
+      final json = customizedLabel.toJson();
+      var emptyKeys = List.generate(json.length, (i) => json.keys.elementAt(i))
+        ..shuffle();
+      final removeCount = json.length - stepCount > 0
+          ? json.length - stepCount
+          : 0;
+      emptyKeys = emptyKeys.sublist(0, removeCount)
+        ..forEach((e) => json[e] = '');
+      customizedLabel = LivenessDetectionLabelModel.fromJson(json);
+    }
+
+    return LivenessDetectionConfig._(
+      startWithInfoScreen: startWithInfoScreen,
+      durationLivenessVerify: durationLivenessVerify,
+      showDurationUiText: showDurationUiText,
+      useCustomizedLabel: useCustomizedLabel,
+      customizedLabel: customizedLabel,
+      isEnableMaxBrightness: isEnableMaxBrightness,
+      imageQuality: imageQuality,
+      cameraResolution: cameraResolution,
+      enableCooldownOnFailure: enableCooldownOnFailure,
+      maxFailedAttempts: maxFailedAttempts,
+      cooldownMinutes: cooldownMinutes,
+      isEnableSnackBar: isEnableSnackBar,
+      shuffleListWithSmileLast: shuffleListWithSmileLast,
+      showCurrentStep: showCurrentStep,
+      isDarkMode: isDarkMode,
+    );
+  }
 }

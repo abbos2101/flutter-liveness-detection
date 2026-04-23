@@ -42,6 +42,7 @@ class _LivenessDetectionScreenState extends State<LivenessDetectionView> {
   var _isProcessingStep = false;
   var _faceDetectedState = false;
   List<LivenessDetectionStepItem> _shuffledSteps = [];
+  LivenessDetectionStep? _lastLoggedStep;
 
   // Brightness Screen
   Future<void> setApplicationBrightness(double brightness) async {
@@ -368,7 +369,10 @@ class _LivenessDetectionScreenState extends State<LivenessDetectionView> {
   }) async {
     if (_isProcessingStep) return;
 
-    debugPrint('Current Step: $step');
+    if (_lastLoggedStep != step) {
+      debugPrint('Current Step: $step');
+      _lastLoggedStep = step;
+    }
 
     switch (step) {
       case .blink:
@@ -465,6 +469,8 @@ class _LivenessDetectionScreenState extends State<LivenessDetectionView> {
     if (_stepsKey.currentState?.currentIndex != 0) {
       _stepsKey.currentState?.reset();
     }
+
+    _lastLoggedStep = null;
 
     if (mounted) setState(() {});
   }

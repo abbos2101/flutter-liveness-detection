@@ -1,20 +1,12 @@
-import 'dart:convert';
-
-LivenessDetectionLabelModel livenessDetectionLabelModelFromJson(String str) =>
-    LivenessDetectionLabelModel.fromJson(json.decode(str));
-
-String livenessDetectionLabelModelToJson(LivenessDetectionLabelModel data) =>
-    json.encode(data.toJson());
-
 class LivenessDetectionLabelModel {
-  String? smile;
-  String? lookUp;
-  String? lookDown;
-  String? lookLeft;
-  String? lookRight;
-  String? blink;
+  final String? smile;
+  final String? lookUp;
+  final String? lookDown;
+  final String? lookLeft;
+  final String? lookRight;
+  final String? blink;
 
-  LivenessDetectionLabelModel({
+  const LivenessDetectionLabelModel({
     this.smile,
     this.lookUp,
     this.lookDown,
