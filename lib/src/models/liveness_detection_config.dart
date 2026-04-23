@@ -2,7 +2,6 @@ import 'package:camera/camera.dart';
 import 'package:flutter_liveness_detection_randomized_plugin/src/models/liveness_detection_label_model.dart';
 
 class LivenessDetectionConfig {
-  final bool startWithInfoScreen;
   final int? durationLivenessVerify;
   final bool showDurationUiText;
   final bool useCustomizedLabel;
@@ -19,7 +18,6 @@ class LivenessDetectionConfig {
   final bool isDarkMode;
 
   LivenessDetectionConfig._({
-    required this.startWithInfoScreen,
     required this.durationLivenessVerify,
     required this.showDurationUiText,
     required this.useCustomizedLabel,
@@ -37,7 +35,6 @@ class LivenessDetectionConfig {
   });
 
   factory LivenessDetectionConfig({
-    bool startWithInfoScreen = false,
     int? durationLivenessVerify = 45,
     bool showDurationUiText = false,
     bool useCustomizedLabel = false,
@@ -68,7 +65,6 @@ class LivenessDetectionConfig {
     }
 
     return LivenessDetectionConfig._(
-      startWithInfoScreen: startWithInfoScreen,
       durationLivenessVerify: durationLivenessVerify,
       showDurationUiText: showDurationUiText,
       useCustomizedLabel: useCustomizedLabel,

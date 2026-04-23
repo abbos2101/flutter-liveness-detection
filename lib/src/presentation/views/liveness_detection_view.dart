@@ -12,7 +12,6 @@ import 'package:flutter_liveness_detection_randomized_plugin/src/core/utils/mach
 import 'package:flutter_liveness_detection_randomized_plugin/src/models/liveness_detection_step_item.dart';
 import 'package:flutter_liveness_detection_randomized_plugin/src/models/liveness_detection_threshold.dart';
 import 'package:flutter_liveness_detection_randomized_plugin/src/presentation/widgets/liveness_detection_step_overlay_widget.dart';
-import 'package:flutter_liveness_detection_randomized_plugin/src/presentation/widgets/liveness_detection_tutorial_widget.dart';
 import 'package:google_mlkit_face_detection/google_mlkit_face_detection.dart';
 import 'package:image/image.dart' as img;
 import 'package:path_provider/path_provider.dart';
@@ -38,7 +37,6 @@ class _LivenessDetectionScreenState extends State<LivenessDetectionView> {
   Timer? _timerToDetectFace;
 
   // Detection state variables
-  late bool _isInfoStepCompleted;
   var _isProcessingStep = false;
   var _faceDetectedState = false;
   List<LivenessDetectionStepItem> _shuffledSteps = [];
@@ -224,8 +222,6 @@ class _LivenessDetectionScreenState extends State<LivenessDetectionView> {
   }
 
   void _preInitCallBack() {
-    _isInfoStepCompleted = !widget.config.startWithInfoScreen;
-
     // Initialize and shuffle steps fresh each time
     _initializeShuffledSteps();
 
@@ -255,9 +251,7 @@ class _LivenessDetectionScreenState extends State<LivenessDetectionView> {
         ),
       );
     }
-    if (!widget.config.startWithInfoScreen) {
-      _startLiveFeed();
-    }
+    _startLiveFeed();
 
     // Steps are shuffled fresh in _preInitCallBack
   }
@@ -522,20 +516,7 @@ class _LivenessDetectionScreenState extends State<LivenessDetectionView> {
   }
 
   Widget _buildBody() {
-    return Stack(
-      children: [
-        _isInfoStepCompleted
-            ? _buildDetectionBody()
-            : LivenessDetectionTutorialScreen(
-                duration: widget.config.durationLivenessVerify ?? 45,
-                isDarkMode: widget.config.isDarkMode,
-                onStartTap: () {
-                  if (mounted) setState(() => _isInfoStepCompleted = true);
-                  _startLiveFeed();
-                },
-              ),
-      ],
-    );
+    return _buildDetectionBody();
   }
 
   Widget _buildDetectionBody() {
