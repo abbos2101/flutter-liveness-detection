@@ -1,4 +1,4 @@
-import 'package:flutter_liveness_detection/src/models/liveness_detection_step_item.dart';
+import 'package:flutter_liveness_detection_randomized_plugin/src/models/liveness_detection_step_item.dart';
 
 var stepLiveness = <LivenessDetectionStepItem>[
   LivenessDetectionStepItem(step: .blink, title: 'Blink 2-3 Times'),

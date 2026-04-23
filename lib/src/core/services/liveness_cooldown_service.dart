@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:flutter_liveness_detection/src/models/liveness_detection_cooldown.dart';
+import 'package:flutter_liveness_detection_randomized_plugin/src/models/liveness_detection_cooldown.dart';
 
 class LivenessCooldownService {
   static const _cooldownKey = 'liveness_detection_cooldown';

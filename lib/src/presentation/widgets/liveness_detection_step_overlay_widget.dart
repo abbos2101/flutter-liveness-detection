@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:camera/camera.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_liveness_detection/src/models/liveness_detection_step_item.dart';
-import 'package:flutter_liveness_detection/src/presentation/widgets/circular_progress_widget/circular_progress_widget.dart';
+import 'package:flutter_liveness_detection_randomized_plugin/src/models/liveness_detection_step_item.dart';
+import 'package:flutter_liveness_detection_randomized_plugin/src/presentation/widgets/circular_progress_widget/circular_progress_widget.dart';
 import 'package:lottie/lottie.dart';
 
 class LivenessDetectionStepOverlayWidget extends StatefulWidget {
