@@ -59,18 +59,6 @@ class LivenessDetectionConfig {
       customizedLabel = LivenessDetectionLabelModel.fromJson(json);
     }
 
-    // checkup...debuging...
-    // customizedLabel = const LivenessDetectionLabelModel(
-    //   smile: '',
-    //   lookLeft: 'left',
-    //   //bug
-    //   lookRight: '',
-    //   lookUp: '',
-    //   lookDown: '',
-    //   //bug
-    //   blink: '',
-    // );
-
     return LivenessDetectionConfig._(
       durationLivenessVerify: durationLivenessVerify,
       showDurationUiText: showDurationUiText,

@@ -596,25 +596,21 @@ class _LivenessDetectionScreenState extends State<LivenessDetectionView> {
     required Face face,
     required LivenessDetectionStep step,
   }) async {
+    final headTurnThreshold =
+        FlutterLivenessDetection.instance.thresholdConfig.firstWhereOrNull(
+              (p0) => p0 is LivenessThresholdHead,
+            )
+            as LivenessThresholdHead?;
+    final double angle = (headTurnThreshold?.rotationAngle ?? 30).abs();
+    final double y = face.headEulerAngleY ?? 0;
+
     if (Platform.isAndroid) {
-      final headTurnThreshold =
-          FlutterLivenessDetection.instance.thresholdConfig.firstWhereOrNull(
-                (p0) => p0 is LivenessThresholdHead,
-              )
-              as LivenessThresholdHead?;
-      if ((face.headEulerAngleY ?? 0) >
-          (headTurnThreshold?.rotationAngle ?? 30)) {
+      if (y > angle) {
         _startProcessing();
         await _completeStep(step: step);
       }
     } else if (Platform.isIOS) {
-      final headTurnThreshold =
-          FlutterLivenessDetection.instance.thresholdConfig.firstWhereOrNull(
-                (p0) => p0 is LivenessThresholdHead,
-              )
-              as LivenessThresholdHead?;
-      if ((face.headEulerAngleY ?? 0) <
-          (headTurnThreshold?.rotationAngle ?? -30)) {
+      if (y < -angle) {
         _startProcessing();
         await _completeStep(step: step);
       }
@@ -646,8 +642,10 @@ class _LivenessDetectionScreenState extends State<LivenessDetectionView> {
               (p0) => p0 is LivenessThresholdHead,
             )
             as LivenessThresholdHead?;
-    if ((face.headEulerAngleX ?? 0) <
-        (headTurnThreshold?.rotationAngle ?? -15)) {
+    final double angle = (headTurnThreshold?.rotationAngle ?? 20).abs();
+    final double x = face.headEulerAngleX ?? 0;
+
+    if (x < -angle) {
       _startProcessing();
       await _completeStep(step: step);
     }
