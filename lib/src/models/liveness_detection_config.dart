@@ -3,7 +3,7 @@ import 'package:flutter_liveness_detection_randomized_plugin/src/models/liveness
 import 'package:flutter_liveness_detection_randomized_plugin/src/models/liveness_ui_labels.dart';
 
 class LivenessDetectionConfig {
-  final int? durationLivenessVerify;
+  final int durationLivenessVerify;
   final bool showDurationUiText;
   final LivenessDetectionLabelModel customizedLabel;
   final bool isEnableMaxBrightness;
@@ -28,16 +28,14 @@ class LivenessDetectionConfig {
   });
 
   factory LivenessDetectionConfig({
-    int? durationLivenessVerify = 45,
-    bool showDurationUiText = false,
-    bool useCustomizedLabel = false,
+    int durationLivenessVerify = 45,
+    bool showDurationUiText = true,
     LivenessDetectionLabelModel customizedLabel =
         const LivenessDetectionLabelModel(),
     bool isEnableMaxBrightness = true,
     int imageQuality = 100,
     ResolutionPreset cameraResolution = ResolutionPreset.high,
     bool isEnableSnackBar = true,
-    bool shuffleListWithSmileLast = true,
     bool showCurrentStep = false,
     bool isDarkMode = true,
     LivenessUiLabels uiLabels = const LivenessUiLabels(),

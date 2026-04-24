@@ -4,8 +4,8 @@ import 'package:camera/camera.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_liveness_detection_randomized_plugin/src/models/liveness_detection_step_item.dart';
-import 'package:flutter_liveness_detection_randomized_plugin/src/presentation/widgets/circular_progress_widget/circular_progress_widget.dart';
 import 'package:flutter_liveness_detection_randomized_plugin/src/models/liveness_ui_labels.dart';
+import 'package:flutter_liveness_detection_randomized_plugin/src/presentation/widgets/circular_progress_widget/circular_progress_widget.dart';
 import 'package:lottie/lottie.dart';
 
 class LivenessDetectionStepOverlayWidget extends StatefulWidget {
@@ -200,12 +200,16 @@ class LivenessDetectionStepOverlayWidgetState
         child: Stack(
           children: [
             Row(
+              mainAxisSize: .max,
               children: [
                 CupertinoButton(
                   onPressed: () => Navigator.pop(context),
                   child: const Icon(CupertinoIcons.back),
                 ),
-                if (widget.showCurrentStep) ...{
+
+                if (!widget.showDurationUiText) const Spacer(),
+
+                if(widget.showDurationUiText)...{
                   Expanded(
                     child: Text(
                       _getRemainingTimeText(_remainingDuration),
@@ -215,14 +219,16 @@ class LivenessDetectionStepOverlayWidgetState
                         fontWeight: .bold,
                       ),
                     ),
-                  ),
+                  )
+                },
+
+                if (widget.showCurrentStep)
                   Text(
                     stepCounter,
                     style: TextStyle(
                       color: widget.isDarkMode ? Colors.white : Colors.black,
                     ),
                   ),
-                },
               ],
             ),
             _buildBody(),
