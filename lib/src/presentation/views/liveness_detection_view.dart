@@ -5,7 +5,6 @@ import 'dart:math';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_liveness_detection_randomized_plugin/flutter_liveness_detection_randomized_plugin.dart';
-import 'package:flutter_liveness_detection_randomized_plugin/src/core/constants/liveness_detection_step_constant.dart';
 import 'package:flutter_liveness_detection_randomized_plugin/src/core/enums/liveness_detection_step.dart';
 import 'package:flutter_liveness_detection_randomized_plugin/src/core/utils/machine_learning_kit_helper.dart';
 import 'package:flutter_liveness_detection_randomized_plugin/src/models/liveness_detection_step_item.dart';
@@ -473,24 +472,8 @@ class _LivenessDetectionScreenState extends State<LivenessDetectionView> {
 
   /// Initialize and shuffle steps fresh each time
   void _initializeShuffledSteps() {
-    List<LivenessDetectionStepItem> baseSteps;
-
-    if (widget.config.useCustomizedLabel &&
-        widget.config.customizedLabel != null) {
-      baseSteps = customizedLivenessLabel(widget.config.customizedLabel!);
-    } else {
-      baseSteps = List.from(
-        stepLiveness,
-      ); // Create a copy to avoid modifying the original
-    }
-
-    shuffleListLivenessChallenge(
-      list: baseSteps,
-      isSmileLast: widget.config.useCustomizedLabel
-          ? false
-          : widget.config.shuffleListWithSmileLast,
-    );
-
+    final baseSteps = customizedLivenessLabel(widget.config.customizedLabel);
+    shuffleListLivenessChallenge(list: baseSteps, isSmileLast: false);
     _shuffledSteps = baseSteps;
   }
 

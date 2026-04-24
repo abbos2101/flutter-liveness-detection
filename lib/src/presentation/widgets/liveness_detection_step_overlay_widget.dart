@@ -299,7 +299,9 @@ class LivenessDetectionStepOverlayWidgetState
         ),
         const SizedBox(width: 16),
         Text(
-          widget.isFaceDetected ? widget.uiLabels.faceFound : widget.uiLabels.faceNotFound,
+          widget.isFaceDetected
+              ? widget.uiLabels.faceFound
+              : widget.uiLabels.faceNotFound,
           style: TextStyle(
             color: widget.isDarkMode ? Colors.white : Colors.black,
           ),

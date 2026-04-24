@@ -5,13 +5,11 @@ import 'package:flutter_liveness_detection_randomized_plugin/src/models/liveness
 class LivenessDetectionConfig {
   final int? durationLivenessVerify;
   final bool showDurationUiText;
-  final bool useCustomizedLabel;
-  final LivenessDetectionLabelModel? customizedLabel;
+  final LivenessDetectionLabelModel customizedLabel;
   final bool isEnableMaxBrightness;
   final int imageQuality;
   final ResolutionPreset cameraResolution;
   final bool isEnableSnackBar;
-  final bool shuffleListWithSmileLast;
   final bool showCurrentStep;
   final bool isDarkMode;
   final LivenessUiLabels uiLabels;
@@ -19,13 +17,11 @@ class LivenessDetectionConfig {
   LivenessDetectionConfig._({
     required this.durationLivenessVerify,
     required this.showDurationUiText,
-    required this.useCustomizedLabel,
     required this.customizedLabel,
     required this.isEnableMaxBrightness,
     required this.imageQuality,
     required this.cameraResolution,
     required this.isEnableSnackBar,
-    required this.shuffleListWithSmileLast,
     required this.showCurrentStep,
     required this.isDarkMode,
     required this.uiLabels,
@@ -62,13 +58,11 @@ class LivenessDetectionConfig {
     return LivenessDetectionConfig._(
       durationLivenessVerify: durationLivenessVerify,
       showDurationUiText: showDurationUiText,
-      useCustomizedLabel: useCustomizedLabel,
       customizedLabel: customizedLabel,
       isEnableMaxBrightness: isEnableMaxBrightness,
       imageQuality: imageQuality,
       cameraResolution: cameraResolution,
       isEnableSnackBar: isEnableSnackBar,
-      shuffleListWithSmileLast: shuffleListWithSmileLast,
       showCurrentStep: showCurrentStep,
       isDarkMode: isDarkMode,
       uiLabels: uiLabels,
