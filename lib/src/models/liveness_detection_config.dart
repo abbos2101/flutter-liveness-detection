@@ -1,5 +1,6 @@
 import 'package:camera/camera.dart';
 import 'package:flutter_liveness_detection_randomized_plugin/src/models/liveness_detection_label_model.dart';
+import 'package:flutter_liveness_detection_randomized_plugin/src/models/liveness_ui_labels.dart';
 
 class LivenessDetectionConfig {
   final int? durationLivenessVerify;
@@ -13,6 +14,7 @@ class LivenessDetectionConfig {
   final bool shuffleListWithSmileLast;
   final bool showCurrentStep;
   final bool isDarkMode;
+  final LivenessUiLabels uiLabels;
 
   LivenessDetectionConfig._({
     required this.durationLivenessVerify,
@@ -26,6 +28,7 @@ class LivenessDetectionConfig {
     required this.shuffleListWithSmileLast,
     required this.showCurrentStep,
     required this.isDarkMode,
+    required this.uiLabels,
   });
 
   factory LivenessDetectionConfig({
@@ -41,6 +44,7 @@ class LivenessDetectionConfig {
     bool shuffleListWithSmileLast = true,
     bool showCurrentStep = false,
     bool isDarkMode = true,
+    LivenessUiLabels uiLabels = const LivenessUiLabels(),
     int? stepCount,
   }) {
     if (stepCount != null) {
@@ -55,6 +59,18 @@ class LivenessDetectionConfig {
       customizedLabel = LivenessDetectionLabelModel.fromJson(json);
     }
 
+    // checkup...debuging...
+    // customizedLabel = const LivenessDetectionLabelModel(
+    //   smile: '',
+    //   lookLeft: 'left',
+    //   //bug
+    //   lookRight: '',
+    //   lookUp: '',
+    //   lookDown: '',
+    //   //bug
+    //   blink: '',
+    // );
+
     return LivenessDetectionConfig._(
       durationLivenessVerify: durationLivenessVerify,
       showDurationUiText: showDurationUiText,
@@ -67,6 +83,7 @@ class LivenessDetectionConfig {
       shuffleListWithSmileLast: shuffleListWithSmileLast,
       showCurrentStep: showCurrentStep,
       isDarkMode: isDarkMode,
+      uiLabels: uiLabels,
     );
   }
 }

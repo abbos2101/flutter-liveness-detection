@@ -534,6 +534,7 @@ class _LivenessDetectionScreenState extends State<LivenessDetectionView> {
           key: _stepsKey,
           steps: _getStepsToUse(),
           showCurrentStep: widget.config.showCurrentStep,
+          uiLabels: widget.config.uiLabels,
           onCompleted: () => Future.delayed(
             const Duration(milliseconds: 500),
             () => _takePicture(),

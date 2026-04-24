@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_liveness_detection_randomized_plugin/src/models/liveness_detection_step_item.dart';
 import 'package:flutter_liveness_detection_randomized_plugin/src/presentation/widgets/circular_progress_widget/circular_progress_widget.dart';
+import 'package:flutter_liveness_detection_randomized_plugin/src/models/liveness_ui_labels.dart';
 import 'package:lottie/lottie.dart';
 
 class LivenessDetectionStepOverlayWidget extends StatefulWidget {
@@ -17,6 +18,7 @@ class LivenessDetectionStepOverlayWidget extends StatefulWidget {
   final bool isDarkMode;
   final bool showDurationUiText;
   final int? duration;
+  final LivenessUiLabels uiLabels;
 
   const LivenessDetectionStepOverlayWidget({
     super.key,
@@ -29,6 +31,7 @@ class LivenessDetectionStepOverlayWidget extends StatefulWidget {
     this.isDarkMode = true,
     this.showDurationUiText = false,
     this.duration,
+    this.uiLabels = const LivenessUiLabels(),
   });
 
   @override
@@ -296,7 +299,7 @@ class LivenessDetectionStepOverlayWidgetState
         ),
         const SizedBox(width: 16),
         Text(
-          widget.isFaceDetected ? 'User Face Found' : 'User Face Not Found...',
+          widget.isFaceDetected ? widget.uiLabels.faceFound : widget.uiLabels.faceNotFound,
           style: TextStyle(
             color: widget.isDarkMode ? Colors.white : Colors.black,
           ),

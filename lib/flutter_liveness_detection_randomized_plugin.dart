@@ -8,6 +8,7 @@ export 'package:camera/camera.dart';
 
 export 'src/models/liveness_detection_config.dart';
 export 'src/models/liveness_detection_label_model.dart';
+export 'src/models/liveness_ui_labels.dart';
 
 class FlutterLivenessDetection {
   FlutterLivenessDetection._();
