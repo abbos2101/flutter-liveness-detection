@@ -209,7 +209,7 @@ class LivenessDetectionStepOverlayWidgetState
 
                 if (!widget.showDurationUiText) const Spacer(),
 
-                if(widget.showDurationUiText)...{
+                if (widget.showDurationUiText) ...{
                   Expanded(
                     child: Text(
                       _getRemainingTimeText(_remainingDuration),
@@ -219,7 +219,7 @@ class LivenessDetectionStepOverlayWidgetState
                         fontWeight: .bold,
                       ),
                     ),
-                  )
+                  ),
                 },
 
                 if (widget.showCurrentStep)
@@ -318,7 +318,7 @@ class LivenessDetectionStepOverlayWidgetState
 
   Widget _buildStepPageView() {
     return SizedBox(
-      height: MediaQuery.of(context).size.height / 10,
+      height: MediaQuery.of(context).size.height / 8,
       width: MediaQuery.of(context).size.width,
       child: AbsorbPointer(
         absorbing: true,
@@ -343,6 +343,7 @@ class LivenessDetectionStepOverlayWidgetState
       child: Text(
         widget.steps[index].title,
         textAlign: .center,
+        maxLines: 3,
         style: TextStyle(
           color: widget.isDarkMode ? Colors.white : Colors.black,
           fontSize: 24,
