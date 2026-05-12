@@ -318,7 +318,7 @@ class LivenessDetectionStepOverlayWidgetState
 
   Widget _buildStepPageView() {
     return SizedBox(
-      height: MediaQuery.of(context).size.height / 8,
+      height: MediaQuery.of(context).size.height / 6,
       width: MediaQuery.of(context).size.width,
       child: AbsorbPointer(
         absorbing: true,
@@ -344,9 +344,10 @@ class LivenessDetectionStepOverlayWidgetState
         widget.steps[index].title,
         textAlign: .center,
         maxLines: 3,
+        overflow: TextOverflow.visible,
         style: TextStyle(
           color: widget.isDarkMode ? Colors.white : Colors.black,
-          fontSize: 24,
+          fontSize: 22,
           fontWeight: .w500,
         ),
       ),
