@@ -346,7 +346,7 @@ class LivenessDetectionStepOverlayWidgetState
         maxLines: 3,
         style: TextStyle(
           color: widget.isDarkMode ? Colors.white : Colors.black,
-          fontSize: 4,
+          fontSize: 24,
           fontWeight: .w500,
         ),
       ),
