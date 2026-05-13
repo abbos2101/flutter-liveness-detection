@@ -604,13 +604,15 @@ class _LivenessDetectionScreenState extends State<LivenessDetectionView> {
     required Face face,
     required LivenessDetectionStep step,
   }) async {
-    final headTurnThreshold =
+    final headThreshold =
         FlutterLivenessDetection.instance.thresholdConfig.firstWhereOrNull(
               (p0) => p0 is LivenessThresholdHead,
             )
             as LivenessThresholdHead?;
-    if ((face.headEulerAngleX ?? 0) >
-        (headTurnThreshold?.rotationAngle ?? 20)) {
+    // Pitch (vertical tilt) uses its own threshold — easier than yaw.
+    final double pitch = (headThreshold?.pitchAngle ?? 12).abs();
+
+    if ((face.headEulerAngleX ?? 0) > pitch) {
       _startProcessing();
       await _completeStep(step: step);
     }
@@ -620,15 +622,16 @@ class _LivenessDetectionScreenState extends State<LivenessDetectionView> {
     required Face face,
     required LivenessDetectionStep step,
   }) async {
-    final headTurnThreshold =
+    final headThreshold =
         FlutterLivenessDetection.instance.thresholdConfig.firstWhereOrNull(
               (p0) => p0 is LivenessThresholdHead,
             )
             as LivenessThresholdHead?;
-    final double angle = (headTurnThreshold?.rotationAngle ?? 20).abs();
+    // Pitch (vertical tilt) uses its own threshold — easier than yaw.
+    final double pitch = (headThreshold?.pitchAngle ?? 12).abs();
     final double x = face.headEulerAngleX ?? 0;
 
-    if (x < -angle) {
+    if (x < -pitch) {
       _startProcessing();
       await _completeStep(step: step);
     }

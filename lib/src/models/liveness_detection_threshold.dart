@@ -139,32 +139,48 @@ class LivenessThresholdBlink extends LivenessDetectionThreshold {
 }
 
 class LivenessThresholdHead extends LivenessDetectionThreshold {
+  /// Yaw angle threshold — used for Look Left / Look Right steps.
   final double rotationAngle;
 
-  LivenessThresholdHead({this.rotationAngle = 45.0}) : super() {
+  /// Pitch angle threshold — used for Look Up / Look Down steps.
+  /// Default is intentionally smaller than [rotationAngle] because the neck
+  /// tilts up/down with less range than it rotates left/right.
+  final double pitchAngle;
+
+  LivenessThresholdHead({
+    this.rotationAngle = 30.0,
+    this.pitchAngle = 12.0,
+  }) : super() {
     assert(
-      rotationAngle > 180.0 || rotationAngle > 0.0,
-      'To detect the livelyness of the face, it has to be properly visible in the camera. The threshold angle should be more than 0.0 degrees and less than 180 degrees.',
+      rotationAngle > 0.0 && rotationAngle < 180.0,
+      'rotationAngle must be between 0 and 180 degrees',
+    );
+    assert(
+      pitchAngle > 0.0 && pitchAngle < 180.0,
+      'pitchAngle must be between 0 and 180 degrees',
     );
   }
 
-  LivenessThresholdHead copyWith({double? rotationAngle}) {
+  LivenessThresholdHead copyWith({double? rotationAngle, double? pitchAngle}) {
     return LivenessThresholdHead(
       rotationAngle: rotationAngle ?? this.rotationAngle,
+      pitchAngle: pitchAngle ?? this.pitchAngle,
     );
   }
 
   @override
   Map<String, dynamic> toMap() {
     final result = <String, dynamic>{}
-      ..addAll({'rotationAngle': rotationAngle});
+      ..addAll({'rotationAngle': rotationAngle})
+      ..addAll({'pitchAngle': pitchAngle});
 
     return result;
   }
 
   factory LivenessThresholdHead.fromMap(Map<String, dynamic> map) {
     return LivenessThresholdHead(
-      rotationAngle: map['rotationAngle']?.toDouble() ?? 0.0,
+      rotationAngle: map['rotationAngle']?.toDouble() ?? 30.0,
+      pitchAngle: map['pitchAngle']?.toDouble() ?? 12.0,
     );
   }
 
@@ -174,23 +190,26 @@ class LivenessThresholdHead extends LivenessDetectionThreshold {
       LivenessThresholdHead.fromMap(json.decode(source));
 
   @override
-  String toString() => 'LivenessThresholdHead(rotationAngle: $rotationAngle)';
+  String toString() =>
+      'LivenessThresholdHead(rotationAngle: $rotationAngle, pitchAngle: $pitchAngle)';
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
     return other is LivenessThresholdHead &&
-        other.rotationAngle == rotationAngle;
+        other.rotationAngle == rotationAngle &&
+        other.pitchAngle == pitchAngle;
   }
 
   @override
-  int get hashCode => rotationAngle.hashCode;
+  int get hashCode => rotationAngle.hashCode ^ pitchAngle.hashCode;
 
   @override
   LivenessDetectionThreshold fromDict(Map<String, dynamic> map) {
     return LivenessThresholdHead(
-      rotationAngle: map['rotationAngle']?.toDouble() ?? 0.0,
+      rotationAngle: map['rotationAngle']?.toDouble() ?? 30.0,
+      pitchAngle: map['pitchAngle']?.toDouble() ?? 12.0,
     );
   }
 }
